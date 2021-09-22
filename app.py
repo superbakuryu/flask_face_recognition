@@ -4,18 +4,20 @@ from flask import Flask, render_template, Response
 import cv2
 import face_recognition
 import numpy as np
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 camera = cv2.VideoCapture(0)
 # Load a sample picture and learn how to recognize it.
-krish_image = face_recognition.load_image_file("Krish/krish.jpg")
+krish_image = face_recognition.load_image_file(os.path.join(basedir,"Krish/krish.jpg"))
 krish_face_encoding = face_recognition.face_encodings(krish_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
-bradley_image = face_recognition.load_image_file("Bradley/bradley.jpg")
+bradley_image = face_recognition.load_image_file(os.path.join(basedir,"Bradley/bradley.jpg"))
 bradley_face_encoding = face_recognition.face_encodings(bradley_image)[0]
 
 # Load my sample picture and learn how to recognize it.
-thuan_image = face_recognition.load_image_file("Thuan/Thuan.jpg")
+thuan_image = face_recognition.load_image_file(os.path.join(basedir,"Thuan/Thuan.jpg"))
 thuan_face_encoding = face_recognition.face_encodings(thuan_image)[0]
 
 # Create arrays of known face encodings and their names
